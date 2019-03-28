@@ -1,0 +1,120 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout" xmlns:vm="sap.ui.comp.variants" xmlns:f="sap.f" controllerName="bsh_notification.controller.DisplaySalesOrder">
+	<App id="app">
+		<pages>
+			<Page showHeader="false">
+				<content>
+						<f:DynamicPage id="idDynamicPage" title="">
+						<!-- DynamicPage Title -->
+						<f:title>
+							<f:DynamicPageTitle>
+								<f:heading>
+									<vm:VariantManagement xmlns="sap.ui.comp.variants" id="idVariantId" standardItemText="All" select="onSelect" save="onSave" enabled="true" manage="onManage" showExecuteOnSelection="true" showShare="false" variantItems="{/VariantSet}">
+										<variantItems>
+											<VariantItem text="{Variant}" key="{Variant}"/>
+										</variantItems>
+									</vm:VariantManagement>
+								</f:heading>
+								<f:snappedContent>
+									<Text text="" id="idSnappedContent"/>
+								</f:snappedContent>
+							</f:DynamicPageTitle>
+						</f:title>
+						<!-- DynamicPage Header -->
+						<f:header>
+							<f:DynamicPageHeader pinnable="false">
+								<f:content>
+									<fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showFilterConfiguration="false" filterContainerWidth="20rem">
+										<fb:filterItems>
+											<fb:FilterItem name="A" label="Ship to" labelTooltip="Ship to">
+												<fb:control>
+													<ComboBox id="idsupplierFrom" placeholder="" valueStateText="Select Supplier" items="{ path: '/results', sorter: { path: 'Lifnr' } }">
+														<core:Item key="{Lifnr}" text="{Lifnr} {SupplierName}"/>
+													</ComboBox>
+												</fb:control>
+											</fb:FilterItem>
+											<fb:FilterItem name="B" label="Factory location" labelTooltip="Factory location">
+												<fb:control>
+													<ComboBox id="idsupplierFrom1" placeholder="" valueStateText="Select Supplier" items="{ path: '/results', sorter: { path: 'Lifnr' } }">
+														<core:Item key="{Lifnr}" text="{Lifnr} {SupplierName}"/>
+													</ComboBox>
+												</fb:control>
+											</fb:FilterItem>
+											<fb:FilterItem name="C" label="Order Number" labelTooltip="Order Number">
+												<fb:control>
+													<Input/>
+												</fb:control>
+											</fb:FilterItem>
+											<fb:FilterItem name="D" label="Order Date" labelTooltip="Pick Up Date">
+												<fb:control>
+													<DatePicker id="idFiltDp" class="sapUiSmallMarginBottom" placeholder="DD.MM.YYYY" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"/>
+												</fb:control>
+											</fb:FilterItem>
+										</fb:filterItems>
+									</fb:FilterBar>
+								</f:content>
+							</f:DynamicPageHeader>
+						</f:header>
+						<!-- DynamicPage Content -->
+						<f:content>
+							<Table id="idProductsTable" headerText="SalesOrder" inset="false" items="{ path: '/ProductCollection',sorter: {
+        path: 'Category',
+        descending: false,
+        group: '.getGroup'
+      },
+      groupHeaderFactory: '.getGroupHeader' }">
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Material"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Description"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Complete"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Partly"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Single Uni"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="BME"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Order Quantity"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Pick Up Date"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem vAlign="Middle">
+										<cells>
+											<Text text="{ProductId}" textAlign="End" textDirection="LTR"/>
+											<Text text="{Category}"/>
+											<Text text="{SupplierName}"/>
+											<Text text="{Category}"/>
+											<Text text="{SupplierName}"/>
+											<Text text="{Quantity}"/>
+										<Input/>
+										<DatePicker id="idFiltDp555" class="sapUiSmallMarginBottom" placeholder="DD.MM.YYYY" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</f:content>
+						<f:content/>
+					</f:DynamicPage>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Add" press="onClickOfAdd"/>
+						<Button text="Print"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

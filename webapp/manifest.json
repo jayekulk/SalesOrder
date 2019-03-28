@@ -1,0 +1,118 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "bsh_notification",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "bsh_notification.view.DisplaySalesOrder",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "bsh_notification.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"targets": {
+				"DisplaySales": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "DisplaySalesOrder"
+				},
+				"CreateSales": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "CreateSalesOrder"
+				},
+				"OverViewSalesOrder": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "OverViewSalesOrder"
+				}
+			},
+			"routes": [{
+				"name": "DisplaySales",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["DisplaySales"]
+			}, {
+				"name": "CreateSales",
+				"pattern": "Create",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["CreateSales"]
+			}, {
+				"name": "OverViewSalesOrder",
+				"pattern": "OverView",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["OverViewSalesOrder"]
+			}],
+			"config": {
+				"viewPath": "bsh_notification.view",
+				"controlId": "app",
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"controlAggregation": "pages",
+				"transition": "slide"
+			}
+		}
+	}
+}

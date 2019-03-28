@@ -1,0 +1,125 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="bsh_notification.controller.OverViewSalesOrder"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:unified="sap.ui.unified" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"
+	xmlns:vm="sap.ui.comp.variants" xmlns:f="sap.f">
+	<App>
+		<pages>
+			<Page showHeader="false">
+				<content>
+					<f:DynamicPage id="idDynamicPage" title="">
+						<!-- DynamicPage Title -->
+						<f:title>
+							<f:DynamicPageTitle>
+								<f:heading>
+									<vm:VariantManagement id="idVariantId" xmlns="sap.ui.comp.variants" standardItemText="All" select="onSelect" save="onSave" enabled="true"
+										manage="onManage" showExecuteOnSelection="true" showShare="false" variantItems="{/VariantSet}">
+										<variantItems>
+											<VariantItem text="{Variant}" key="{Variant}"></VariantItem>
+										</variantItems>
+									</vm:VariantManagement>
+								</f:heading>
+								<f:snappedContent>
+									<Text text="" id="idSnappedContent"/>
+								</f:snappedContent>
+							</f:DynamicPageTitle>
+						</f:title>
+						<!-- DynamicPage Header -->
+						<f:header>
+							<f:DynamicPageHeader pinnable="false">
+								<f:content>
+									<fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="true" showFilterConfiguration="false"
+										filterContainerWidth="20rem">
+										<fb:filterItems>
+											<fb:FilterItem name="A" label="Pick Up Date" labelTooltip="Pick Up Date">
+												<fb:control>
+													<DatePicker id="idFiltDp" class="sapUiSmallMarginBottom" placeholder="DD.MM.YYYY" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"/>
+												</fb:control>
+											</fb:FilterItem>
+											<fb:FilterItem name="B" label="" labelTooltip="">
+												<fb:control>
+													<Button text="Search"/>
+												</fb:control>
+											</fb:FilterItem>
+										</fb:filterItems>
+									</fb:FilterBar>
+								</f:content>
+							</f:DynamicPageHeader>
+						</f:header>
+						<!-- DynamicPage Content -->
+						<f:content>
+							<VBox class="sapUiSmallMargin">
+								<PlanningCalendar id="PC1" startDate="{path: '/startDate'}" rows="{path: '/people'}" appointmentsVisualization="Filled"
+									appointmentSelect="handleAppointmentSelect" showEmptyIntervalHeaders="false">
+									<toolbarContent>
+										<Title text="Title" titleStyle="H4"/>
+									</toolbarContent>
+									<rows>
+										<PlanningCalendarRow icon="{pic}" title="{name}" text="{role}" appointments="{path : 'appointments', templateShareable: 'true'}"
+											intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+											<appointments>
+												<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" text="{info}" type="{type}"
+													tentative="{tentative}"></unified:CalendarAppointment>
+											</appointments>
+											<intervalHeaders>
+												<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" type="{type}"></unified:CalendarAppointment>
+											</intervalHeaders>
+										</PlanningCalendarRow>
+									</rows>
+								</PlanningCalendar>
+								<Table id="idProductsTable" growingScrollToLoad="false" inset="false" items="{ path: '' }">
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Material"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Description"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Complete"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Partly"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Single Uni"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="BME"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Order Quantity"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Pick Up Date"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text=""/>
+												<Text text=""/>
+												<Text text=""/>
+												<Text text=""/>
+												<Text text=""/>
+												<Text text=""/>
+												<Input/>
+												<DatePicker id="idFiltDp555" class="sapUiSmallMarginBottom" placeholder="DD.MM.YYYY" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</VBox>
+						</f:content>
+						<f:content></f:content>
+					</f:DynamicPage>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Add" press="onAddPress"/>
+						<Button id="idExcelButton" press="onDownloadExcel" icon="sap-icon://download" tooltip="Export to Excel"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
