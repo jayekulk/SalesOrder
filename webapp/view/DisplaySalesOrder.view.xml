@@ -3,7 +3,7 @@
 		<pages>
 			<Page showHeader="false">
 				<content>
-						<f:DynamicPage id="idDynamicPage" title="test">
+						<f:DynamicPage id="idDynamicPage" title="test2">
 						<!-- DynamicPage Title -->
 						<f:title>
 							<f:DynamicPageTitle>
